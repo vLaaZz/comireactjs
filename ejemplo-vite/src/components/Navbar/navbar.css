@@ -1,0 +1,14 @@
+.navbar_logo {
+    width: 120px;
+    border-radius: 300px;
+    margin: 10px;
+}
+
+.header {
+    display: flex;
+    flex-direction: row;
+    align-content: normal;
+    justify-content: space-between;
+    background-color: grey;
+}
+
