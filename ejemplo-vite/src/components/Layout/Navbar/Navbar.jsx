@@ -1,6 +1,6 @@
-import logonavbar from '../../assets/logonavbar.png'
+import logonavbar from '../../../assets/logonavbar.png'
 import './navbar.css'
-import { CartWidget } from '../CartWidget/CartWidget'
+import { CartWidget } from '../../CartWidget/CartWidget'
 
 export const Navbar = () => {
     

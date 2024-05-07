@@ -1,18 +1,16 @@
-import {Navbar} from './components/Navbar/Navbar.jsx'
-import { ItemListContainer } from './components/ItemListContainer/ItemListContainer.jsx'
-import { ItemCount } from './components/ItemCount/ItemCount.jsx'
+
+import { Home } from '../Pages/Home/Home.jsx'
+
+
+
 const App = () => {
 
-  
-    
-    return (
-        <>
-          <Navbar/>
-          <ItemListContainer titulo='The Gaming Store'/>
-          <ItemCount/>
-          
-        </>
-    )
+  return (
+    <>
+      <Home/>
+    </>
+  )
 }
+
 
 export default App
