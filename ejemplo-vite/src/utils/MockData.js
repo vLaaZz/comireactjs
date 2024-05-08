@@ -7,6 +7,7 @@ export const products = [
             descripcion: "Laptop delgada y ligera con pantalla Full HD.",
             precio: 899.99,
             stock: 10,
+            type: "computadora",
             imagen: "https://dlcdnwebimgs.asus.com/gain/d13bab25-68bc-433f-bbe3-8e5a31f16e94/"
         },
         {
@@ -15,6 +16,7 @@ export const products = [
             descripcion: "Monitor UltraWide de 34 pulgadas con resolución 3440x1440.",
             precio: 499.99,
             stock: 5,
+            type: "accesorios",
             imagen: "https://www.lg.com/content/dam/channel/wcms/pe/images/monitores/25um58-p_awf_espr_pe_c/gallery/25UM58_Product%20image_01_Desk.jpg"
         },
         {
@@ -23,6 +25,7 @@ export const products = [
             descripcion: "Teclado mecánico RGB con interruptores Cherry MX.",
             precio: 129.99,
             stock: 15,
+            type: "accesorios",
             imagen: "https://s3-sa-east-1.amazonaws.com/saasargentina/HXi9GdCZx36ibYOkZppJ/imagen"
         },
         {
@@ -31,6 +34,7 @@ export const products = [
             descripcion: "Auriculares inalámbricos con cancelación de ruido.",
             precio: 199.99,
             stock: 8,
+            type: "accesorios",
             imagen: "https://www.sony.com.ar/image/b789488955522f13ffb4778bd08465c6?fmt=pjpeg&wid=330&bgcolor=FFFFFF&bgc=FFFFFF"
         },
         {
@@ -39,6 +43,7 @@ export const products = [
             descripcion: "Impresora multifuncional con conexión Wi-Fi.",
             precio: 149.99,
             stock: 12,
+            type: "computadora",
             imagen: "https://ar-media.hptiendaenlinea.com/catalog/product/cache/b3b166914d87ce343d4dc5ec5117b502/a/z/azure_1f3w2a_1_1_.png"
         },
         {
@@ -47,6 +52,7 @@ export const products = [
             descripcion: "Router Wi-Fi 6 de alta velocidad con amplia cobertura.",
             precio: 129.99,
             stock: 7,
+            type: "computadora",
             imagen: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTmFit91QtK-XcROgOXOUTCodRlcBWOa-GjwQhpUU3o5Q&s"
         },
         {
@@ -55,6 +61,7 @@ export const products = [
             descripcion: "Potente tarjeta gráfica para gaming con tecnología Ray Tracing.",
             precio: 799.99,
             stock: 3,
+            type: "accesorios",
             imagen: "https://s3-sa-east-1.amazonaws.com/saasargentina/Fe87ZZwp5qIP8ntxtFNG/imagen"
         },
         {
@@ -63,6 +70,7 @@ export const products = [
             descripcion: "Disco duro externo de gran capacidad con conexión USB-C.",
             precio: 129.99,
             stock: 10,
+            type: "accesorios",
             imagen: "https://http2.mlstatic.com/D_NQ_NP_896604-MLA41002068528_032020-O.webp"
         },
         {
@@ -71,6 +79,7 @@ export const products = [
             descripcion: "Silla ergonómica para gaming con soporte lumbar ajustable.",
             precio: 299.99,
             stock: 6,
+            type: "accesorios",
             imagen: "https://i.blogs.es/8c6311/predator_thronos_air_01_recommended/1366_2000.png"
         },
         {
@@ -79,6 +88,7 @@ export const products = [
             descripcion: "Altavoces inalámbricos con tecnología Bluetooth.",
             precio: 79.99,
             stock: 15,
+            type: "accesorios",
             imagen: "https://i0.wp.com/aptecnologia.com.ar/new/wp-content/uploads/2021/12/logi740.jpg?fit=800%2C800&ssl=1"
         }
 ];
@@ -89,6 +99,26 @@ export const getProducts = () => {
     return new Promise ((resolve, reject)=>{
         setTimeout (()=> {
             resolve(products)
-        },1000)
-    })
-}
+        },1000);
+    });
+};
+
+
+export const getProductsByCategory = (categoryId) => {
+    return new Promise ((resolve, reject)=>{
+        setTimeout (()=> {
+            resolve(products.filter((elem) => elem.type === categoryId));
+        },1000);
+    });
+};
+
+
+export const getProductById = (productId) => {
+    return new Promise ((resolve, reject)=>{
+        setTimeout (()=> {
+            console.log(productId);
+            const product = products.find((elem) => elem.id === parseInt(productId));
+            resolve(product);
+        },1000);
+    });
+};

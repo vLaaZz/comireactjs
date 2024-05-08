@@ -1,22 +1,27 @@
-import logonavbar from '../../../assets/logonavbar.png'
-import './navbar.css'
-import { CartWidget } from '../../CartWidget/CartWidget'
+import Container from 'react-bootstrap/Container';
+import Nav from 'react-bootstrap/Nav';
+import Navbar from 'react-bootstrap/Navbar';
+import { Link, NavLink } from 'react-router-dom';
 
-export const Navbar = () => {
-    
-  
-    return (
-      <header className='header'>
-          <img src = {logonavbar} alt="" className='navbar_logo'></img>
-          <nav className='navcolor'>
-            <ul className='navlist'>
-              <li>Section 1</li>
-              <li>Section 2</li>
-              <li>Section 3</li>
-            </ul>
-          </nav>
-          <CartWidget/> 
-      </header>
-    )
+export function Navigator() {
+  return (
+    <>
+      <Navbar bg="dark" data-bs-theme="dark">
+        <Container>
+          <Navbar.Brand href="#home">The Gaming Store</Navbar.Brand>
+          <Nav className="d-flex gap-3">
+            <Link to="/">Home</Link>
+            <Link to="/products">Productos</Link>
+            <Link to="/category/computadora">Computadora</Link>
+            <Link to="/category/accesorios">Accesorios</Link>
+            <Link to="/cart">Cart</Link>
+            <Link to="/Shop">Shop</Link>
+          </Nav>
+        </Container>
+      </Navbar>
+      <br />
+
+    </>
+  );
 }
 

@@ -1,22 +1,22 @@
-import './Item.css'
 
+import Button from 'react-bootstrap/Button';
+import Card from 'react-bootstrap/Card';
+import { Link } from 'react-router-dom';
 
-export const Item = ({id, nombre, descripcion, precio, stock, imagen}) => {
+export const Item = ({id, nombre, precio, stock, imagen, type}) => {
   
-    const handleonClick = ()=> {
-      console.log("click")
-    };
-  
+  const handleonClick = ()=> {
+    console.log("click")
+  };
   return (
-    <div className="item">
-        <div className="item__image">
-          <img src={imagen} alt={nombre}/>
-        </div>
-        <div className="item__info">
-          <h2 className="item__info__title">{nombre}</h2>
-          <p className="item__info__price">{precio}</p>
-          <button variant="primary" onClick={handleonClick}>Detalles</button>
-        </div>
-    </div>
-  )
-};
+    <Card style={{ width: '18rem', cursor:"pointer" }}>
+      <Card.Img variant="top" src={imagen} />
+      <Card.Body>
+        <Card.Title>{nombre}</Card.Title>
+        <Link to={`/products/${id}`} onClick={handleonClick}>Detalles</Link>
+      </Card.Body>
+    </Card>
+  );
+}
+
+
