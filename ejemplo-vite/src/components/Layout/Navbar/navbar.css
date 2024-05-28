@@ -12,3 +12,6 @@
     background-color: grey;
 }
 
+.cartWidget {
+    align-items: right;
+}

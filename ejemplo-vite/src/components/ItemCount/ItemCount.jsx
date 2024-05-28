@@ -1,35 +1,46 @@
 import { useState } from "react"
+import { useNavigate } from "react-router-dom"
 
 
-export const ItemCount = ({}) => {
-
-    const [stock, setStock] = useState(0)
+export const ItemCount = ({stock, initial, handleAddToCart}) => {
+    const navigate = useNavigate();
+    const [cantItems, setcantItems] = useState(0);
+    const [prodAgregado, setProdAgregado] = useState(false);
 
     const sumar =()=> {
-        setStock(stock+1)
-    }
+        setcantItems(cantItems+1);
+    };
 
     const restar =()=> {
         if (stock > 0) {
-            setStock(stock - 1)
+            setcantItems(cantItems - 1);
         }
-    }
+    };
 
+    const handleTerminarCompra = ()=> {
+        setProdAgregado(true);
+        navigate("/cart");
+    };
 
-    const handleAddToCart = ()=> {
-        console.log(`Se agregaron ${stock} al carrito`)
-    }
-
+    const handleAgregarAlCarrito = ()=> {
+        setProdAgregado(true);
+        handleAddToCart(cantItems);
+    };
 
 return (
     <>
         <div>Cantidad de Objetos</div>
         <div>
             <button onClick={sumar}> + </button>
-            <span> {stock} </span>
+            <span> {cantItems} </span>
             <button onClick={restar}> - </button>
         </div>
-        <button onClick={handleAddToCart}>Agregar al Carrito</button>
+        {prodAgregado ? (
+        <button onClick={handleTerminarCompra}> Terminar Compra </button>
+        ) : (
+        <button onClick={handleAgregarAlCarrito}>Agregar al Carrito</button>
+        )}
+
     </>
-)
-}
+    );
+};

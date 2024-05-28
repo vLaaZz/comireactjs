@@ -3,7 +3,9 @@ import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import { Link } from 'react-router-dom';
 
+
 export const Item = ({id, nombre, precio, stock, imagen, type}) => {
+
   
   const handleonClick = ()=> {
     console.log("click")
