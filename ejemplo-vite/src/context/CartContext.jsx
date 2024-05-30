@@ -14,65 +14,69 @@ export const useCartContext = () => {
 const CartContextProvider = ({ children }) => {
     const [totalQty, setTotalQty] = useState(0);
     const [cart, setCart] = useState([]);
-    const [precioTotal, setPrecioTotal] = useState([0]);
+    const [precioTotal, setPrecioTotal] = useState(0);
     
+    useEffect(() => {
+        const storedCart = localStorage.getItem('cart');
+        if (storedCart) {
+            try {
+                const parsedCart = JSON.parse(storedCart);
+                setCart(parsedCart);
+                setTotalQty(parsedCart.reduce((acc, elem) => acc + elem.qty, 0));
+                setPrecioTotal(parsedCart.reduce((acc, elem) => acc + elem.precio * elem.qty, 0));
+            } catch (error) {
+                console.error("Error al analizar el JSON:", error);
+                setCart([]);
+            }
+        }
+    }, []);
 
     useEffect(() => {
-        const cart = JSON.parse(localStorage.getItem('cart'));
-    
-        if (cart) {
-            setCart(cart);
-            setTotalQty(cart.reduce((acc,elem) => acc + elem.qty, 8));
-            setPrecioTotal(cart.reduce((acc,elem) => acc + elem.precio * elem.qty, 0));
-        }
-        }, []);
-    
-    const addToCart= (item, qty) => {
+        setCartToLocalStorage(cart);
+    }, [cart]);
+
+    const addToCart = (item, qty) => {
         setTotalQty(totalQty + qty);
         setPrecioTotal(precioTotal + item.precio * qty);
         let newCart = [];
         if (isInCart(item.id)) {
-            newCart = cart.map((elem)=> {
+            newCart = cart.map((elem) => {
                 if (elem.id === item.id) {
-                    return {...elem, qty: elem.qty + qty};
+                    return { ...elem, qty: elem.qty + qty };
                 } else {
                     return elem;
                 }
             });
-            setCart(newCart);
-        }else {
-            newCart = [...cart, {...item, qty}];
-            setCart(newCart);
+        } else {
+            newCart = [...cart, { ...item, qty }];
         }
-        setCartToLocalStorage();
+        setCart(newCart);
     };
-    
+
     const isInCart = (id) => {
         return cart.some((elem) => elem.id === id);
     };
-    
-    const removeItem = (id, precio, qty)=> {
-       setPrecioTotal(precioTotal - precio * qty);
-       setTotalQty(totalQty - qty);
-       setCartToLocalStorage();
-       
-       const newCart = cart.filter((elem)=> elem.id !== id);
-       console.log(newCart);
-       setCart(newCart);
-        };
-    
-    
+
+    const removeItem = (id) => {
+        const itemToRemove = cart.find((elem) => elem.id === id);
+        if (itemToRemove) {
+            setPrecioTotal(precioTotal - itemToRemove.precio * itemToRemove.qty);
+            setTotalQty(totalQty - itemToRemove.qty);
+            const newCart = cart.filter((elem) => elem.id !== id);
+            setCart(newCart);
+        }
+    };
+
     const clearCart = () => {
         setTotalQty(0);
         setCart([]);
         setPrecioTotal(0);
-        setCartToLocalStorage([]);
     };
 
     const setCartToLocalStorage = (cartToSave) => {
         localStorage.setItem("cart", JSON.stringify(cartToSave));
     };
-        
+
     const contextValue = {
         totalQty,
         addToCart,
@@ -81,7 +85,7 @@ const CartContextProvider = ({ children }) => {
         clearCart,
         precioTotal,
     };
-    
+
     return (<Provider value={contextValue}>{children}</Provider>);
 };
 
