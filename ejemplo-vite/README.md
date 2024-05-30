@@ -1,8 +1,25 @@
-# React + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+# GamingStore Proyect
 
-Currently, two official plugins are available:
+Un proyecto utilizado para el aprendizaje de nuevas tecnicas.
+## Tools
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Para el correcto uso de este proyecto se necesita una serie de programas y applicaciones detalladas a continuacion:
+
+* Visual Studio Code
+* Vite + React
+* Google Chrome
+* GitHub Account
+
+## Deployment
+
+Para simular este proyecto en un navegador web desde PowerShell
+
+```ps
+  npm create vite@latest
+  npx degit user/project#main my-project
+  cd my-project
+  npm install
+  npm run dev
+```
+

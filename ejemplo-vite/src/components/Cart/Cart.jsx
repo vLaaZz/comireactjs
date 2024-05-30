@@ -5,6 +5,7 @@ import { useState } from 'react';
 import { db } from '../../firebase/dbConnection';
 import { collection, addDoc } from 'firebase/firestore';
 
+
 const Cart = () => {
   const { cart, precioTotal, removeItem, clearCart } = useCartContext();
   const [formData, setFormData] = useState({ name: '', tel: '', email: '' });
