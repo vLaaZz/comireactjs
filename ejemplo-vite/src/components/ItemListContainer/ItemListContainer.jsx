@@ -33,16 +33,6 @@ export const ItemListContainer = ({titulo}) => {
             console.log(error)
             });
 
-
-
-
-        //getProducts()
-        //.then((res)=> {
-        // setProducts(res)
-        //})
-        //.catch((error) => {
-        //  console.log(error)
-        //});
       }
 
     },  [categoryId])
